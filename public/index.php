@@ -1,6 +1,6 @@
 <?php include "../app/config/conexao.php";
 
-$sql = "SELECT * from PRODUTOS";
+$sql = "SELECT * from produtos";
 $result = mysqli_query($conn, $sql);
 $produtos = $result ? $result->fetch_all(mode: MYSQLI_ASSOC) : [];
 
@@ -22,13 +22,14 @@ $produtos = $result ? $result->fetch_all(mode: MYSQLI_ASSOC) : [];
     <?php if (count($produtos) === 0): ?>
 
     <?php else: ?>
+        <a href="/cadastrar.php">Cadastrar Produtos</a>
         <div class="produtos">
             <?php foreach ($produtos as $p): ?>
                 <div class="produto">
                     <img src="https://placehold.co/200" alt="">
                     <h2><?= $p['nome'] ?></h2>
                     <p><?= $p['preco'] ?></p>
-                    <p><?= $p['qunatidade'] ?></p>
+                    <p><?= $p['quantidade'] ?></p>
                     <p><?= $p['descricao'] ?></p>
                     <a href="./editar.php?id<?= $p['id'] ?>">Editar</a>
                 </div>
